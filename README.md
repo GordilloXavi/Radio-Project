@@ -6,6 +6,20 @@ Welcome to the hotbox project!
 
 Clone the repository
 
+create a `.env` file that looks like this:
+```
+PYTHONPATH=/app
+PYTHONUNBUFFERED=1
+
+FLASK_APP=start.py
+FLASK_ENV=development
+FLASK_DEBUG=1
+
+POSTGRES_DB=hotbox-db
+POSTGRES_USER=hotbox-user
+POSTGRES_PASSWORD=hotbox-password
+```
+
 Install Docker and docker-compose
 
 Start the server

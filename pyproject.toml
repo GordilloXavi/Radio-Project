@@ -6,7 +6,8 @@ authors = ["Xavier Gordillo Ramos"]
 license = "MIT License"
 
 [tool.poetry.dependencies]
-python = "3.8"
+python = "3.8.2"
+flask = "^1.1.1"
 
 [tool.poetry.dev-dependencies]
 

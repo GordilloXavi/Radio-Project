@@ -1,0 +1,64 @@
+.env
+.venv
+.git
+.gitignore
+.dockerignore
+Dockerfile
+LICENSE
+Makefile
+README.md
+docker-compose.yml
+
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# pyenv
+.python-version
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# General
+*.DS_Store
+.AppleDouble
+.LSOverride
+
+.github
+makefile
+
+.git
+Dockerfile
+.DS_Store
+.gitignore
+.dockerignore
+
+/credentials
+/cache
+/store

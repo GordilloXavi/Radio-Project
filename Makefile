@@ -16,14 +16,19 @@ build:
 deps:
 
 install:
-	docker exec -t container_name poetry self update
+	#docker exec -t hotbox-app poetry self update
 
 	if [ -z "$(dep)" ]; then \
-		docker exec -t container_name poetry install; \
+		docker exec -t hotbox-app poetry install; \
 	else \
-		docker exec -t container_name poetry add "$(dep)"; \
+		docker exec -t hotbox_app poetry add "$(dep)"; \
 	fi
 
 shell:
+	docker exec -it hotbox-app  bash
 
 dbshell:
+	docker exec -it hotbox-db psql -U hotbox 
+
+health:
+	curl localhost:5000/health

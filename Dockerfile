@@ -2,16 +2,15 @@ FROM python:3.8.2-slim-buster
 
 WORKDIR /app
 
-COPY /app /app
+# Copy only the source code (maybe do a .dockerignore instead)
+COPY /app /app/app
 COPY pyproject.toml /app
+COPY start.py /app
 
-
-RUN apt-get update
-RUN pip install --upgrade pip
-RUN pip install poetry 
+RUN pip install poetry
+RUN poetry config virtualenvs.create false
 RUN poetry install
 
 EXPOSE 5000
 
-#CMD pipenv run flask run --host 0.0.0.0
-CMD sleep 10000
+CMD flask run

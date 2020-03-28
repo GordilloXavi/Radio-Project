@@ -11,13 +11,11 @@ services:
     expose:
       - 5000
     ports:
-      - 4000:5000
-    volumes:
-      - .:/app
+      - 5000:5000
     env_file:
       - .env
     networks:
-      - hotbox
+      - hotbox-network
   db:
     container_name: hotbox-db
     image: postgres:12.0-alpine
@@ -28,8 +26,8 @@ services:
     env_file:
       - .env
     networks:
-      - hotbox
+      - hotbox-network
 networks:
-  hotbox:
+  hotbox-network:
     name: hotbox-network
     driver: bridge

@@ -7,7 +7,8 @@ remove:
 	# Stop all running project images (make stop)
 	# Remove all project images
 	# Prompt warning message (y/n)
-	docker stop $(docker ps -qa)
+	docker-compose down
+	# remove images
 	
 test:
 
@@ -21,7 +22,7 @@ install:
 	if [ -z "$(dep)" ]; then \
 		docker exec -t hotbox-app poetry install; \
 	else \
-		docker exec -t hotbox_app poetry add "$(dep)"; \
+		docker exec -t hotbox-app poetry add "$(dep)"; \
 	fi
 
 shell:

@@ -8,6 +8,8 @@ remove:
 	# Remove all project images
 	# Prompt warning message (y/n)
 	docker-compose down
+	docker stop $(docker ps -qa)
+	docker system prune
 	# remove images
 	
 test:
@@ -32,4 +34,4 @@ dbshell:
 	docker exec -it hotbox-db psql -U hotbox 
 
 health:
-	curl localhost:5000/health
+	curl http://localhost:5000/health

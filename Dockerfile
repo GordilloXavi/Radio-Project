@@ -11,6 +11,6 @@ RUN pip install poetry
 RUN poetry config virtualenvs.create false
 RUN poetry install
 
-EXPOSE 5000
+EXPOSE 8000
 
-CMD flask run
+CMD flask run --host 0.0.0.0

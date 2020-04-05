@@ -35,3 +35,6 @@ dbshell:
 
 health:
 	curl http://localhost:5000/health
+
+flask_shell:
+	docker exec -it hotbox-app flask shell

@@ -53,3 +53,14 @@ Remove all Docker images:
 `docker system prune`
 Run the prject again:
 `make run`
+
+## Deployment
+# Deploying app to Heroku
+Push changes to container registry:
+`heroku container:push web`
+Release those changes:
+ `heroku container:release web`
+ Open the app in the browser:
+`heroku open`
+View logs:
+ `heroku logs --tail`

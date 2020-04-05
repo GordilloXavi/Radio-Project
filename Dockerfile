@@ -11,6 +11,6 @@ RUN pip install poetry
 RUN poetry config virtualenvs.create false
 RUN poetry install
 
-EXPOSE 8000
+EXPOSE $PORT
 
-CMD flask run --host 0.0.0.0
+CMD gunicorn -b 0.0.0.0:$PORT start:app

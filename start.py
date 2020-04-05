@@ -15,4 +15,5 @@ limiter = Limiter(
 )
 
 if __name__ == "__main__":
-    app.run(host=app.config.get(host), port=app.config.get(port))
+    #app.run(host=app.config.get(host), port=app.config.get(port))
+    app.run()

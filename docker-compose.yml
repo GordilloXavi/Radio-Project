@@ -16,18 +16,25 @@ services:
       - .env
     networks:
       - hotbox-network
-  db:
+  db: # TODO: Do retry logic in the code or use wait-for-it !!
     container_name: hotbox-db
-    image: postgres:12.0-alpine
+    image: postgres #TODO: lookup latest image
     expose:
       - 5432
     ports:
-      - 4001:5432
+      # machine:container
+      - 5001:5432
     env_file:
       - .env
     networks:
       - hotbox-network
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+
 networks:
   hotbox-network:
     name: hotbox-network
     driver: bridge
+
+volumes:
+  database-data:

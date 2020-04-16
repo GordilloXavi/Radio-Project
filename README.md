@@ -20,7 +20,13 @@ POSTGRES_USER=hotbox-user
 POSTGRES_PASSWORD=hotbox-password
 ```
 
-Install Docker and docker-compose
+Install Docker
+```
+apt install docker.io
+systemctl start docker
+systemctl enable docker
+```
+Install docker-compose (https://docs.docker.com/compose/install/)
 
 Start the server
 `make run`

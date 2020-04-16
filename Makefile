@@ -31,7 +31,8 @@ shell:
 	docker exec -it hotbox-app  bash
 
 dbshell:
-	docker exec -it hotbox-db psql -U hotbox 
+	#docker exec -it hotbox-db psql -U 
+	docker-compose run db psql --host=db --username=hotbox-user --dbname=hotbox-db
 
 health:
 	curl http://localhost:5000/health

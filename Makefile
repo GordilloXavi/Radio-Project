@@ -15,6 +15,7 @@ remove:
 test:
 
 build:
+	docker-compose up --build
 
 deps:
 

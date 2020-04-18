@@ -4,13 +4,14 @@ from sqlalchemy import Column, Integer, ForeignKey, String, DateTime, Enum
 import uuid
 import enum
 
-from start import db
+from app.db import db
 
 class Song(db.Model):
     __tablename__ = 'song'
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
     title = Column(String(255))
     artist = Column(String(255))
+    picture_url = Column(String(500))
     youtube_title = Column(String(255))
     youtube_url = Column(String(500))
     file_path = Column(String(500))

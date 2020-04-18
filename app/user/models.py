@@ -4,7 +4,7 @@ from sqlalchemy import Column, String, DateTime
 
 import uuid
 
-from start import db
+from app.db import db
 
 class User(db.Model):
     __tablename__ = 'user'

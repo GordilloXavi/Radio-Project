@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, make_response
 from app.user.models import User
 from app.db import db
 
@@ -9,29 +9,40 @@ blueprint = Blueprint('user', __name__)
 def user(user_name: str):
     session = db.session
     if request.method == 'GET':
-        return get_user_info(session, user_name)
+        user = get_user_info(user_name)
+
+        if user is None:
+            return 'not found'
+        
+        return make_response(user.to_dict())
     
     if request.method == 'POST':
-        return create_new_user(session, user_name)
+        user = create_new_user(session, user_name)
 
-def get_user_info(session, user_name: str):
+        if user is None:
+            return 'user already exists'
+            
+        return make_response(user.to_dict())
+
+def get_user_info(user_name: str):
     """
     Returns the user's information.
     If the user deos not exist, returns an error.
     """
-    pass
+    return User.query.filter_by(name=user_name.lower()).first()
 
-def create_new_user(session, user_name: str) -> str:
+
+def create_new_user(session, user_name: str) -> User:
     """
     Creates a new user with the specified user name.
     If the user already existed, returns an error.
     """
     user = User.query.filter_by(name=user_name.lower()).first()
     if user is not None:
-        return f'User with name {user_name} already exists' #FIXME:
+        return None
 
     new_user = User(name=user_name)
     session.add(new_user)
     session.commit()
 
-    return f'User {new_user.name} created with id {new_user.id}' #FIXME:
+    return new_user

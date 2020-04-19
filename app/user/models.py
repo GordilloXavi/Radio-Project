@@ -1,5 +1,5 @@
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.sql import func
+from datetime import datetime
 from sqlalchemy import Column, String, DateTime
 
 import uuid
@@ -10,5 +10,13 @@ class User(db.Model):
     __tablename__ = 'user'
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
     name = Column(String(20), index=True, unique=True)
-    created_at = Column(DateTime, default=func.now(), nullable=False)
-    last_seen = Column(DateTime, default=func.now(), nullable=False)
+    created_at = Column(DateTime, default=datetime.now(), nullable=False)
+    last_seen = Column(DateTime, default=datetime.now(), nullable=False)
+
+    def to_dict(self) -> dict:
+        return {
+            'id': self.id,
+            'name': self.name,
+            'created_at': self.created_at,
+            'last_seen': self.last_seen
+        }

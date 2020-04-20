@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+from app.db import db
 
 blueprint = Blueprint('song', __name__)
 

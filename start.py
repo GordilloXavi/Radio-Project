@@ -23,6 +23,7 @@ def create_app(config_object: Config = ProdConfig) -> Flask:
     app.config.from_object(config_object)
 
     app.config['SQLALCHEMY_DATABASE_URI'] = get_databasse_uri(app)
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     @app.route('/health')
     def health():

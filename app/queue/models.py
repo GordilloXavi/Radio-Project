@@ -14,7 +14,7 @@ class Queue(db.Model):
     played = Column(Boolean, default=False)
     user_request = Column(Boolean, default=False)
     played_at = Column(DateTime, default=datetime.now()) #FIXME: status instead of bool
-    position = Column(Integer, autoincrement=True)
+    position = Column(Integer, autoincrement=True, nullable=False, unique=True)
 
     song = relationship("Song", back_populates='queue_entries')
 

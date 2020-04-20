@@ -30,7 +30,7 @@ class Song(db.Model):
     youtube_url = Column(String(500))
     file_path = Column(String(500))
     meta = Column(JSON)
-    duration = Column(Integer) # seconds
+    duration = Column(Integer)
     created_at = Column(DateTime, default=datetime.now(), nullable=False)
 
     #queue_entries = relationship('Queue', order_by=Queue.position, back_populates='song') #FIXME: order_by might not work

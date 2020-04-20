@@ -48,6 +48,7 @@ def init_database(app): #FIXME: must be a better way to do this
     from app.user.models import User
     with app.app_context():
         db.create_all()
+    #TODO: create categories to start with
 
 
 config = DevConfig if get_debug_flag() else ProdConfig

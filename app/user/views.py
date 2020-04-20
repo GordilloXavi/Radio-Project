@@ -9,7 +9,7 @@ blueprint = Blueprint('user', __name__)
 def user(user_name: str):
     session = db.session
     if request.method == 'GET':
-        user = get_user_info(user_name)
+        user = get_user(user_name)
 
         if user is None:
             return 'not found'
@@ -24,12 +24,12 @@ def user(user_name: str):
             
         return make_response(user.to_dict())
 
-def get_user_info(user_name: str):
+def get_user(user_name: str):
     """
     Returns the user's information.
     If the user deos not exist, returns an error.
     """
-    return User.query.filter_by(name=user_name.lower()).first()
+    return User.query.filter_by(name=user_name).first()
 
 
 def create_new_user(session, user_name: str) -> User:

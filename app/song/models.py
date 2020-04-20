@@ -33,7 +33,6 @@ class Song(db.Model):
     duration = Column(Integer)
     created_at = Column(DateTime, default=datetime.now(), nullable=False)
 
-    #queue_entries = relationship('Queue', order_by=Queue.position, back_populates='song') #FIXME: order_by might not work
     queue_entries = relationship('Queue', back_populates='song')
 
     categories = relationship(
@@ -51,7 +50,7 @@ class CategoryType(enum.Enum):
 class Category(db.Model):
     __tablename__ = 'category'
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
-    category = Column(Enum(CategoryType), unique=True, nullable=False)
+    name = Column(Enum(CategoryType), unique=True, nullable=False)
     songs = relationship(
         "SongCategory",
         back_populates="category"

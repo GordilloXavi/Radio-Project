@@ -43,13 +43,26 @@ def get_databasse_uri(app: Flask) -> str:
     db = app.config.get('DB_NAME')
     return f'postgresql://{user}:{passwd}@{host}:{port}/{db}'
 
+def create_categories(session):
+    from app.song.models import Category, CategoryType
+
+    try:
+        for c in CategoryType:
+            category = Category(category=c.value)
+            session.add(category)
+
+        session.commit()
+    except:
+        session.rollback()
+
 def init_database(app): #FIXME: must be a better way to do this
     db.init_app(app)
     from app.song.models import Song, SongCategory, Category
     from app.user.models import User
     with app.app_context():
         db.create_all()
-    #TODO: create categories to start with
+        create_categories(db.session) #FIXME: move elsewhere, maybe commands
+
 
 
 config = DevConfig if get_debug_flag() else ProdConfig

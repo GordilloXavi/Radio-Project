@@ -3,6 +3,7 @@ from app.queue.models import Queue
 from app.db import db
 from datetime import datetime
 from app.song.models import Song
+from typing import List
 
 blueprint = Blueprint('queue', __name__)
 
@@ -16,18 +17,34 @@ def queue(max_songs: int):
     if request.method == 'POST':
         pass
 
-def get_queue_songs(max_songs: int = 5):
+def get_queue_songs(max_songs: int = 5) -> List[Song]:
     """
     Returns the top songs from the queue
     """
-    songs = Queue.query.filter_by(played=False).order_by(Queue.position.desc()).limit(max_songs)
+    requested_songs = Queue.query.filter_by(played=False, user_request=True) \
+        .order_by(Queue.position.desc()).limit(max_songs)
+
+    songs_left = max_songs - requested_songs.count()
+
+    if songs_left == 0:
+        return requested_songs.all()
+    
+    songs = requested_songs = Queue.query.filter_by(played=False, user_request=False) \
+        .order_by(Queue.position.desc()).limit(songs_left).all()
+    
+    songs.append(requested_songs.all())
+
     return songs
 
 def pop_queue(session):
     """
     Marks the first song of the queue as played
     """
-    last_song = Queue.query.filter_by(played=False).order_by(Queue.position.desc()).first()
+    last_song = Queue.query.filter_by(played=False).order_by(Queue.position.asc()).first()
+    
+    if last_song is None:
+        return
+
     last_song.played_at = datetime.now()
     last_song.played = True
 

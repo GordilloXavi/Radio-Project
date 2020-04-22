@@ -24,12 +24,12 @@ class Song(db.Model):
     __tablename__ = 'song'
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
     title = Column(String(255))
-    artist = Column(String(255))
-    picture_url = Column(String(500))
+    artist = Column(String(255)) #TODO: support multiple artists or concatenate them
+    picture_url = Column(String(1024))
     youtube_title = Column(String(255))
-    youtube_url = Column(String(500))
-    file_path = Column(String(500))
-    meta = Column(JSON)
+    youtube_url = Column(String(1024))
+    youtube_meta = Column(JSON)
+    spotify_meta = Column(JSON)
     duration = Column(Integer)
     created_at = Column(DateTime, default=datetime.now(), nullable=False)
 
@@ -39,6 +39,18 @@ class Song(db.Model):
         "SongCategory",
         back_populates="song"
     )
+
+    def to_dict(self) -> dict:
+        return {
+            'id': self.id,
+            'title': self.title,
+            'artist': self.artist,
+            'pucture_url': self.picture_url,
+            'youtube_title': self.youtube_title,
+            'youtube_url': self.youtube_url,
+            'duration': self.duration,
+            'categories': [c.category.name.value for c in self.categories]
+        }
 
 class CategoryType(enum.Enum):
     CHILL = 'CHILL'

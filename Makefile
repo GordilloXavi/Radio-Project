@@ -18,6 +18,14 @@ build:
 	docker-compose up --build
 
 deps:
+	docker exec -t hotbox-app poetry show
+
+com:
+	if [ -z "$(com)" ]; then \
+		docker exec -t hotbox-app flask com; \
+	else \
+		docker exec -t hotbox-app flask com "$(com); \
+	fi
 
 install:
 	#docker exec -t hotbox-app poetry self update

@@ -3,6 +3,7 @@ from app.queue.models import Queue
 from app.db import db
 from datetime import datetime
 from app.song.models import Song
+from app.song.views import get_song_from_query
 from typing import List
 
 blueprint = Blueprint('queue', __name__)
@@ -16,6 +17,26 @@ def queue(max_songs: int):
     
     if request.method == 'POST':
         pass
+
+@blueprint.route('/queue/', methods=['POST'])
+def add_song():
+    data = request.get_json()
+    query = data.get('query')
+
+    session = db.session
+
+    song = get_song_from_query(session, query)
+
+    if song is None:
+        return # TODO: raise error
+
+    add_to_queue(
+        session=session,
+        song=song,
+        user_request=True
+    )
+    
+
 
 def get_queue_songs(max_songs: int = 5) -> List[Song]:
     """

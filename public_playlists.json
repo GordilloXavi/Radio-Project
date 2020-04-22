@@ -1,0 +1,322 @@
+{
+  "href" : "https://api.spotify.com/v1/users/xgordillo00/playlists?offset=0&limit=50",
+  "items" : [ {
+    "collaborative" : false,
+    "description" : "SOLO LAS MAS FENAS",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/6RQm6qGmTkgUGse8yo0N1a"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/6RQm6qGmTkgUGse8yo0N1a",
+    "id" : "6RQm6qGmTkgUGse8yo0N1a",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://i.scdn.co/image/ab67706c0000da847032085a0d7c65fc078e6bb6",
+      "width" : null
+    } ],
+    "name" : "Las fenas",
+    "owner" : {
+      "display_name" : "xgordillo00",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/xgordillo00"
+      },
+      "href" : "https://api.spotify.com/v1/users/xgordillo00",
+      "id" : "xgordillo00",
+      "type" : "user",
+      "uri" : "spotify:user:xgordillo00"
+    },
+    "primary_color" : null,
+    "public" : true,
+    "snapshot_id" : "MzYyLGJmZjFlMzUxODBlMGExYzI2ODIyYmJjZTQwMTc5ODhlMGYzNDMyMDg=",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/6RQm6qGmTkgUGse8yo0N1a/tracks",
+      "total" : 144
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:6RQm6qGmTkgUGse8yo0N1a"
+  }, {
+    "collaborative" : false,
+    "description" : "",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/4FfjSx2CiVTuzMROxnUDTW"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/4FfjSx2CiVTuzMROxnUDTW",
+    "id" : "4FfjSx2CiVTuzMROxnUDTW",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://i.scdn.co/image/ab67706c0000da842fdb3f332b634924a0d1e23f",
+      "width" : null
+    } ],
+    "name" : "T  R  I  P  P  Y",
+    "owner" : {
+      "display_name" : "xgordillo00",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/xgordillo00"
+      },
+      "href" : "https://api.spotify.com/v1/users/xgordillo00",
+      "id" : "xgordillo00",
+      "type" : "user",
+      "uri" : "spotify:user:xgordillo00"
+    },
+    "primary_color" : null,
+    "public" : true,
+    "snapshot_id" : "NjEsNWNjOTA5NGE0MmU5Zjc2NGE4NDk2ZjcyNjc0ZDg2MjdhYWE2ZTE3OQ==",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/4FfjSx2CiVTuzMROxnUDTW/tracks",
+      "total" : 41
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:4FfjSx2CiVTuzMROxnUDTW"
+  }, {
+    "collaborative" : false,
+    "description" : "Them late night jams",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/65wgLG8gaRYDqpaada7yLI"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/65wgLG8gaRYDqpaada7yLI",
+    "id" : "65wgLG8gaRYDqpaada7yLI",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://i.scdn.co/image/ab67706c0000da846bf44570ab398f1429b7e09f",
+      "width" : null
+    } ],
+    "name" : "C   H   I   L   L",
+    "owner" : {
+      "display_name" : "xgordillo00",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/xgordillo00"
+      },
+      "href" : "https://api.spotify.com/v1/users/xgordillo00",
+      "id" : "xgordillo00",
+      "type" : "user",
+      "uri" : "spotify:user:xgordillo00"
+    },
+    "primary_color" : null,
+    "public" : true,
+    "snapshot_id" : "MzMzLDM2MWE4ZTQwN2UxN2MyZGE0Mzk1ZGQ0NjJlNzEwZWY4M2ZlYjQ5Njg=",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/65wgLG8gaRYDqpaada7yLI/tracks",
+      "total" : 214
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:65wgLG8gaRYDqpaada7yLI"
+  }, {
+    "collaborative" : false,
+    "description" : "",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/0ktkgo3RDBqX0RKypveS2l"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/0ktkgo3RDBqX0RKypveS2l",
+    "id" : "0ktkgo3RDBqX0RKypveS2l",
+    "images" : [ {
+      "height" : 640,
+      "url" : "https://mosaic.scdn.co/640/ab67616d0000b273113ef593aa679b556f0659b2ab67616d0000b27390c00af3fd8de6b9f510c1b8ab67616d0000b273e1530b42603367fdb2208d88ab67616d0000b273efe812ae54f0698a32ccae14",
+      "width" : 640
+    }, {
+      "height" : 300,
+      "url" : "https://mosaic.scdn.co/300/ab67616d0000b273113ef593aa679b556f0659b2ab67616d0000b27390c00af3fd8de6b9f510c1b8ab67616d0000b273e1530b42603367fdb2208d88ab67616d0000b273efe812ae54f0698a32ccae14",
+      "width" : 300
+    }, {
+      "height" : 60,
+      "url" : "https://mosaic.scdn.co/60/ab67616d0000b273113ef593aa679b556f0659b2ab67616d0000b27390c00af3fd8de6b9f510c1b8ab67616d0000b273e1530b42603367fdb2208d88ab67616d0000b273efe812ae54f0698a32ccae14",
+      "width" : 60
+    } ],
+    "name" : "nights",
+    "owner" : {
+      "display_name" : "xgordillo00",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/xgordillo00"
+      },
+      "href" : "https://api.spotify.com/v1/users/xgordillo00",
+      "id" : "xgordillo00",
+      "type" : "user",
+      "uri" : "spotify:user:xgordillo00"
+    },
+    "primary_color" : null,
+    "public" : true,
+    "snapshot_id" : "NDcsMzhhZTQ3ZGY3OGYyMzEwZTVjY2M0MzdlYTRiNGY4MDk5ZTlmYTI2Nw==",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/0ktkgo3RDBqX0RKypveS2l/tracks",
+      "total" : 42
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:0ktkgo3RDBqX0RKypveS2l"
+  }, {
+    "collaborative" : false,
+    "description" : "",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/4Xh5dWF7eHe3zzlCzJRPds"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/4Xh5dWF7eHe3zzlCzJRPds",
+    "id" : "4Xh5dWF7eHe3zzlCzJRPds",
+    "images" : [ {
+      "height" : 640,
+      "url" : "https://mosaic.scdn.co/640/ab67616d0000b2731f0aaf32a1b1ded2b1095d95ab67616d0000b27329d63c7e01fc04b35a0b3c23ab67616d0000b2735530213be9cd50bc4462f025ab67616d0000b273cb657f1ee37b08dbbe0938c8",
+      "width" : 640
+    }, {
+      "height" : 300,
+      "url" : "https://mosaic.scdn.co/300/ab67616d0000b2731f0aaf32a1b1ded2b1095d95ab67616d0000b27329d63c7e01fc04b35a0b3c23ab67616d0000b2735530213be9cd50bc4462f025ab67616d0000b273cb657f1ee37b08dbbe0938c8",
+      "width" : 300
+    }, {
+      "height" : 60,
+      "url" : "https://mosaic.scdn.co/60/ab67616d0000b2731f0aaf32a1b1ded2b1095d95ab67616d0000b27329d63c7e01fc04b35a0b3c23ab67616d0000b2735530213be9cd50bc4462f025ab67616d0000b273cb657f1ee37b08dbbe0938c8",
+      "width" : 60
+    } ],
+    "name" : "W   A   V   Y",
+    "owner" : {
+      "display_name" : "xgordillo00",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/xgordillo00"
+      },
+      "href" : "https://api.spotify.com/v1/users/xgordillo00",
+      "id" : "xgordillo00",
+      "type" : "user",
+      "uri" : "spotify:user:xgordillo00"
+    },
+    "primary_color" : null,
+    "public" : true,
+    "snapshot_id" : "NjMsMTg0ODExZGEzOTA0MGVjNTAzYjIyYTkxNTZjNWVkZDFlZDdiZTIxMQ==",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/4Xh5dWF7eHe3zzlCzJRPds/tracks",
+      "total" : 57
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:4Xh5dWF7eHe3zzlCzJRPds"
+  }, {
+    "collaborative" : false,
+    "description" : "Playlist for murdering workouts",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/2ggScQmufykfPlvkZEXzt4"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/2ggScQmufykfPlvkZEXzt4",
+    "id" : "2ggScQmufykfPlvkZEXzt4",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://i.scdn.co/image/ab67706c0000da84485eadc1358eee924a5778de",
+      "width" : null
+    } ],
+    "name" : "H Y P E",
+    "owner" : {
+      "display_name" : "xgordillo00",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/xgordillo00"
+      },
+      "href" : "https://api.spotify.com/v1/users/xgordillo00",
+      "id" : "xgordillo00",
+      "type" : "user",
+      "uri" : "spotify:user:xgordillo00"
+    },
+    "primary_color" : null,
+    "public" : true,
+    "snapshot_id" : "MTUwLDI0YmI0YTA0OWY0NWE5ZjVkYmQzNmIxNGZhZTdlMjZmMTZlNGYyZDQ=",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/2ggScQmufykfPlvkZEXzt4/tracks",
+      "total" : 204
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:2ggScQmufykfPlvkZEXzt4"
+  }, {
+    "collaborative" : false,
+    "description" : "More music",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/3X8CrjlKGKlkNaR3fq6rEV"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/3X8CrjlKGKlkNaR3fq6rEV",
+    "id" : "3X8CrjlKGKlkNaR3fq6rEV",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://i.scdn.co/image/ab67706c0000da8422cd3305ff367e0514b1ddcb",
+      "width" : null
+    } ],
+    "name" : "S K 8",
+    "owner" : {
+      "display_name" : "xgordillo00",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/xgordillo00"
+      },
+      "href" : "https://api.spotify.com/v1/users/xgordillo00",
+      "id" : "xgordillo00",
+      "type" : "user",
+      "uri" : "spotify:user:xgordillo00"
+    },
+    "primary_color" : null,
+    "public" : true,
+    "snapshot_id" : "NDQsNDRiN2RlMWM3N2E4MDJmMjY1MjkyYTM0NmRlMWIzYWExZWMxMmIwNA==",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/3X8CrjlKGKlkNaR3fq6rEV/tracks",
+      "total" : 27
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:3X8CrjlKGKlkNaR3fq6rEV"
+  }, {
+    "collaborative" : false,
+    "description" : "The GOAT",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/4xfKiTPnOHxnTZnKIk2awe"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/4xfKiTPnOHxnTZnKIk2awe",
+    "id" : "4xfKiTPnOHxnTZnKIk2awe",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://i.scdn.co/image/ab67706c0000da847d141b44d617c31408dd4087",
+      "width" : null
+    } ],
+    "name" : "C O L E",
+    "owner" : {
+      "display_name" : "xgordillo00",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/xgordillo00"
+      },
+      "href" : "https://api.spotify.com/v1/users/xgordillo00",
+      "id" : "xgordillo00",
+      "type" : "user",
+      "uri" : "spotify:user:xgordillo00"
+    },
+    "primary_color" : null,
+    "public" : true,
+    "snapshot_id" : "NTEsNjYyNTkwOWE1YjA3NjcyMjgxMDNkOTVjM2NiMmE0NzdiZTRiNGM0YQ==",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/4xfKiTPnOHxnTZnKIk2awe/tracks",
+      "total" : 41
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:4xfKiTPnOHxnTZnKIk2awe"
+  }, {
+    "collaborative" : false,
+    "description" : "",
+    "external_urls" : {
+      "spotify" : "https://open.spotify.com/playlist/4aYiKUeh7fQ4vG0g2DGNIK"
+    },
+    "href" : "https://api.spotify.com/v1/playlists/4aYiKUeh7fQ4vG0g2DGNIK",
+    "id" : "4aYiKUeh7fQ4vG0g2DGNIK",
+    "images" : [ {
+      "height" : null,
+      "url" : "https://i.scdn.co/image/ab67706c0000da846cdf44d5d34bd8ca5a0b4289",
+      "width" : null
+    } ],
+    "name" : "E D M",
+    "owner" : {
+      "display_name" : "xgordillo00",
+      "external_urls" : {
+        "spotify" : "https://open.spotify.com/user/xgordillo00"
+      },
+      "href" : "https://api.spotify.com/v1/users/xgordillo00",
+      "id" : "xgordillo00",
+      "type" : "user",
+      "uri" : "spotify:user:xgordillo00"
+    },
+    "primary_color" : null,
+    "public" : true,
+    "snapshot_id" : "NjMsZjU4NmQ5NGUxY2ZlZWE2NmEyNWUxYTJlMmQxYTk4NzQ0YjZkMjU0OQ==",
+    "tracks" : {
+      "href" : "https://api.spotify.com/v1/playlists/4aYiKUeh7fQ4vG0g2DGNIK/tracks",
+      "total" : 286
+    },
+    "type" : "playlist",
+    "uri" : "spotify:playlist:4aYiKUeh7fQ4vG0g2DGNIK"
+  } ],
+  "limit" : 50,
+  "next" : null,
+  "offset" : 0,
+  "previous" : null,
+  "total" : 9
+}

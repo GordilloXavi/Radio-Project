@@ -26,9 +26,10 @@ class Song(db.Model):
     title = Column(String(255))
     artist = Column(String(255)) #TODO: support multiple artists or concatenate them
     picture_url = Column(String(1024))
-    youtube_title = Column(String(255))
-    youtube_url = Column(String(1024))
-    youtube_meta = Column(JSON)
+    yt_title = Column(String(255))
+    yt_url = Column(String(1024), index=True)
+    yt_thumbnail_url = Column(String(1024))
+    yt_meta = Column(JSON)
     spotify_meta = Column(JSON)
     duration = Column(Integer)
     created_at = Column(DateTime, default=datetime.now(), nullable=False)
@@ -45,11 +46,12 @@ class Song(db.Model):
             'id': self.id,
             'title': self.title,
             'artist': self.artist,
-            'pucture_url': self.picture_url,
-            'youtube_title': self.youtube_title,
-            'youtube_url': self.youtube_url,
+            'picture_url': self.picture_url,
+            'youtube_title': self.yt_title,
+            'youtube_url': self.yt_url,
             'duration': self.duration,
-            'categories': [c.category.name.value for c in self.categories]
+            'categories': [c.category.name.value for c in self.categories],
+            'youtube_thumbnail_url': self.yt_thumbnail_url
         }
 
 class CategoryType(enum.Enum):

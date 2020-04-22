@@ -1,68 +1,78 @@
-from flask import Blueprint, request
+from flask import Blueprint, make_response
 from app.db import db
 from typing import List
-from app.song.models import Song, Category, SongCategory
+from app.song.models import Song
 from sqlalchemy import func
-import youtube_dl
+from app.utils.youtube import get_youtube_meta
+import traceback
 
 blueprint = Blueprint('song', __name__)
 
+@blueprint.route('/song/<query>', methods=['POST'])
+def create(query: str):
+    try:
+        session = db.session
+        song = create_song_from_query(session, query)
 
+        if song is None:
+            return make_response('song matching query not found', 404)
 
+        return make_response(song.to_dict(), 201)
+
+    except: #TODO: return proper response based on custom exceptions
+        return make_response('server error', 500)
+    
+
+def create_song_from_query(session, query: str) -> Song:
+    """
+    Creates a song from a youtube query if the query is successful;
+    Otherwise, returns None
+    """
+    youtube_data = get_youtube_meta(query)
+
+    if youtube_data is None:
+        return None
+
+    youtube_title = youtube_data.pop('title')
+    youtube_url = youtube_data.pop('video_url')
+    thumbnail = youtube_data.pop('thumbnail_picture')
+    duration = youtube_data.pop('duration')
+    meta = youtube_data
+
+    song = Song.query.filter_by(
+        yt_title=youtube_title,
+        yt_url=youtube_url
+    ).first()
+
+    if song is not None:
+        return song
+
+    song = Song(
+        yt_title=youtube_title,
+        yt_url=youtube_url,
+        yt_thumbnail_url=thumbnail,
+        duration=duration,
+        yt_meta=meta
+    )
+
+    try:
+        session.add(song)
+        session.commit()
+        return song
+
+    except:
+        #TODO: log error
+        traceback.print_exc()
+        session.rollback()
+        return None
 
 
 def create_song( #TODO:
     session,
-    title: str,
-    artist: str,
-    categories: List[Category] = None,
-    youtube_url: str = None,
-    picture_url: str = None,
-    spotify_meta: dict = None
-    ):
-    song = Song.query.filter(
-        func.lower(Song.title) == func.lower(title),
-        func.lower(Song.artist) == func.lower(artist)
-    ).first()
+    title: str = None,
 
-    if song is not None:
-        return
-
-    song = Song(
-        title=title,
-        artist=artist
-    )
-    for category in categories:
-        sc = SongCategory(
-            song=song,
-            category=category
-        )
-        song.categories.append(sc)
-        session.add(sc)
-    
-    session.add(song)
-    session.commit()
-
-def get_song_from_query(session, query: str): #FIXME!!!
+) -> Song:
     """
-        Query for a similar song. If it exists: return it
-        Download song data with youtbe-dll
-        Persist song
-        Delete json data
-        Return song
+    Attempts to crete a song with the given arguments if no similar song exists
     """
-    ydl_opts = { #FIXME: tune parameters!!
-        'output': 'current_video',#FIXME: extemsion
-        'write-info-json': True,
-        'max-filesize': '1000k',
-        'no-playlist': True,
-        'format': 'bestaudio/best',
-        'postprocessors': [{
-            'key': 'FFmpegExtractAudio',
-            'preferredcodec': 'mp3',
-            'preferredquality': '192',
-        }],
-        'skip-download': True, #Do not download the video
-    }
-    with youtube_dl.YoutubeDL(ydl_opts) as ydl: #TODO: encapsulate in own class
-        ydl.download([f'ytsearch:{query} audio'])
+    pass

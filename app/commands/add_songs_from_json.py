@@ -17,10 +17,11 @@ def exec(file_name):
             session = db.session
 
             try:
-                artist = p['track']['artists'][0]['name']
+                artist = p['track']['artists'][0]['name'] #TODO: concatenate artists
                 title = p['track']['name']
                 picture_url = p['track']['album']['images'][0]['url']
 
+                #TODO: wrap this in its own function
                 s = Song.query.filter_by(
                     title=title,
                     artist=artist
@@ -29,7 +30,7 @@ def exec(file_name):
                     logging.warning(f'{artist} - {title} already exists')
                     continue
 
-                s = Song(
+                s = Song( #TODO: set youtube url too
                     title=title,
                     artist=artist,
                     picture_url=picture_url,

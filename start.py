@@ -9,7 +9,7 @@ from app.db import db
 from app.user.views import blueprint as user_blueprint
 from app.song.views import blueprint as song_blueprint
 from app.queue.views import blueprint as queue_blueprint
-from app.commands import blueprint as commands_blueprint
+from app.commands.blueprint import blueprint as commands_blueprint
 
 def create_app(config_object: Config = ProdConfig) -> Flask:
     """

@@ -70,3 +70,11 @@ Release those changes:
 `heroku open`
 View logs:
  `heroku logs --tail`
+
+# Add new songs:
+Get tracks from playlist in json forat:
+https://developer.spotify.com/console/get-playlist-tracks/
+Copy json file to container:
+`docker cp <file> <container-name>:/app/<file>`
+Run the followin command:
+`flask com add_songs <file>`

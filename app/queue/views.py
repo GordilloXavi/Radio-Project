@@ -3,66 +3,35 @@ from app.queue.models import Queue
 from app.db import db
 from datetime import datetime
 from app.song.models import Song
+from app.user.models import User
 from typing import List
 
 blueprint = Blueprint('queue', __name__)
 
 
-@blueprint.route('/queue/<max_songs>', methods=['GET', 'POST'])
-def queue(max_songs: int):
-    session = db.session
-    if request.method == 'GET':
-        pass
+@blueprint.route('/queue/<uuid:song_id>', methods=['POST'])
+def add_song(song_id: str):    
+    song = Song.query.filter_by(id=song_id).first()
+    if song is None:
+        return make_response('song not found', 404)
+
+    user_name = request.headers.get('user_name')
+    user = User.query.filter_by(name=user_name).first()
+    if user_name is None or user is None:
+        return make_response('user not found', 404)
+
+    add_song_to_queue(db.session, song, user)
+
+    return make_response('song added', 200)
     
-    if request.method == 'POST':
-        pass
 
-@blueprint.route('/queue/', methods=['POST'])
-def add_song():
-    pass
-    
-
-
-def get_queue_songs(max_songs: int = 5) -> List[Song]:
-    """
-    Returns the top songs from the queue
-    """
-    requested_songs = Queue.query.filter_by(played=False, user_request=True) \
-        .order_by(Queue.position.desc()).limit(max_songs)
-
-    songs_left = max_songs - requested_songs.count()
-
-    if songs_left == 0:
-        return requested_songs.all()
-    
-    songs = requested_songs = Queue.query.filter_by(played=False, user_request=False) \
-        .order_by(Queue.position.desc()).limit(songs_left).all()
-    
-    songs.append(requested_songs.all())
-
-    return songs
-
-def pop_queue(session):
-    """
-    Marks the first song of the queue as played
-    """
-    last_song = Queue.query.filter_by(played=False).order_by(Queue.position.asc()).first()
-    
-    if last_song is None:
-        return
-
-    last_song.played_at = datetime.now()
-    last_song.played = True
-
-    session.commit() # make sure this indeed updates the row
-
-def add_to_queue(session, song: Song, user_request: bool = False):
+def add_song_to_queue(session, song: Song, by_user: User = None):
     """
     Adds song to queue
     """
     entry = Queue(
         song=song,
-        user_request=user_request
+        user=by_user
     )
     session.add(entry)
     session.commit()

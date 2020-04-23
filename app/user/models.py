@@ -1,5 +1,6 @@
 from sqlalchemy.dialects.postgresql import UUID
 from datetime import datetime
+from sqlalchemy.orm import relationship
 from sqlalchemy import Column, String, DateTime
 
 import uuid
@@ -12,6 +13,8 @@ class User(db.Model):
     name = Column(String(20), index=True, unique=True)
     created_at = Column(DateTime, default=datetime.now(), nullable=False)
     last_seen = Column(DateTime, default=datetime.now(), nullable=False)
+
+    song_requests = relationship('Queue', back_populates='user')
 
     def to_dict(self) -> dict:
         return {

@@ -51,7 +51,8 @@ class Song(db.Model):
             'youtube_url': self.yt_url,
             'duration': self.duration,
             'categories': [c.category.name.value for c in self.categories],
-            'youtube_thumbnail_url': self.yt_thumbnail_url
+            'youtube_thumbnail_url': self.yt_thumbnail_url,
+            'youtube_meta': self.yt_meta
         }
 
 class CategoryType(enum.Enum):

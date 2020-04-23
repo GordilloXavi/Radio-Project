@@ -5,8 +5,7 @@ RUN apt-get update
 RUN apt-get install -y \
     libpq-dev \
     python-dev \
-    gcc \
-    ffmpeg
+    gcc
 
 WORKDIR /app
 

@@ -7,6 +7,7 @@ from app.song.models import Song
 from app.user.models import User
 from typing import List
 import json
+import traceback
 
 blueprint = Blueprint('queue', __name__)
 
@@ -20,6 +21,7 @@ def add_song(song_id: str):
 
     user_name = request.headers.get('user_name')
     user = User.query.filter_by(name=user_name).first()
+
     if user_name is None or user is None:
         return make_response('user not found', 404)
 
@@ -27,18 +29,21 @@ def add_song(song_id: str):
 
     queue = get_current_queue(5)
     queue_data = [q.to_dict() for q in queue]
+    print(queue_data)
     socketio.emit(json.dumps(queue_data))
 
     return make_response('song added', 200)
 
-@blueprint.route('/queue/<max_entries>', methods=['get'])
+@blueprint.route('/queue/<int:max_entries>', methods=['get'])
 def get_queue_element(max_entries: int):
+    #TODO: limit max entries to like 50
     try:
         entries = get_current_queue(max_entries=max_entries)
-        queue_data = [q.to_dict() for q in entries]
+        queue_data = {'entries': [q.to_dict() for q in entries]}
         return make_response(queue_data, 200)
     except:
         #TODO: log error
+        traceback.print_exc()
         return make_response('summ happened', 500)
     
 

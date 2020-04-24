@@ -43,7 +43,7 @@ class Song(db.Model):
 
     def to_dict(self) -> dict:
         return {
-            'id': self.id,
+            'id': str(self.id),
             'title': self.title,
             'artist': self.artist,
             'picture_url': self.picture_url,

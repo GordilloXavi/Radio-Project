@@ -18,8 +18,8 @@ class User(db.Model):
 
     def to_dict(self) -> dict:
         return {
-            'id': self.id,
+            'id': str(self.id),
             'name': self.name,
-            'created_at': self.created_at,
-            'last_seen': self.last_seen
+            'created_at': str(self.created_at),
+            'last_seen': str(self.last_seen)
         }

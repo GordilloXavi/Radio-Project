@@ -23,7 +23,7 @@ class Queue(db.Model):
 
     def to_dict(self) -> dict:
         return {
-            'id': self.id,
+            'id': str(self.id),
             'user_request': self.user_request,
             'song': self.song.to_dict(),
             'user': self.user.to_dict()

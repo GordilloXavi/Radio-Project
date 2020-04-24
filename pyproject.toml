@@ -14,7 +14,7 @@ psycopg2 = "^2.8.5"
 youtube-dl = "^2020.3.24"
 Flask-Script = "^2.0.6"
 Flask-SocketIO = "^4.3.0"
-eventlet = "^0.25.2"
+gevent = "^20.4.0"
 
 [tool.poetry.dev-dependencies]
 

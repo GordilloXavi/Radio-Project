@@ -20,4 +20,5 @@ RUN poetry install
 
 EXPOSE $PORT
 
-CMD gunicorn --worker-class eventlet -w 1 start:app
+# CMD gunicorn --worker-class eventlet -w 1 start:app #with eventlet installed
+CMD gunicorn -k gevent -w 1 start:app #with gevent installed

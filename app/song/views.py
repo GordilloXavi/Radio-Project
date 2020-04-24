@@ -29,6 +29,7 @@ def create_song_from_query(session, query: str) -> Song:
     Otherwise, returns None
     """
     youtube_data = get_youtube_meta(query)
+    print(youtube_data)
 
     if youtube_data is None:
         return None
@@ -37,9 +38,13 @@ def create_song_from_query(session, query: str) -> Song:
     youtube_url = youtube_data.pop('video_url')
     thumbnail = youtube_data.pop('thumbnail_picture')
     duration = youtube_data.pop('duration')
+    title = youtube_data.get('song_title')
+    artist = youtube_data.get('artist')
     meta = youtube_data
 
     song = Song.query.filter_by(
+        title=title,
+        artist=artist,
         yt_title=youtube_title,
         yt_url=youtube_url
     ).first()
@@ -48,6 +53,8 @@ def create_song_from_query(session, query: str) -> Song:
         return song
 
     song = Song(
+        title=title,
+        artist=artist,
         yt_title=youtube_title,
         yt_url=youtube_url,
         yt_thumbnail_url=thumbnail,

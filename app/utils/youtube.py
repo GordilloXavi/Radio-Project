@@ -1,4 +1,5 @@
 import youtube_dl
+import traceback
 
 def get_youtube_meta(query: str) -> dict:
     """
@@ -31,6 +32,8 @@ def get_youtube_meta(query: str) -> dict:
             )['entries'][0]
 
         except: #TODO: log error
+            print('ERROR!!!')
+            traceback.print_exc()
             return None
 
         return {

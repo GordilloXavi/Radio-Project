@@ -20,4 +20,4 @@ RUN poetry install
 
 EXPOSE $PORT
 
-CMD gunicorn -b 0.0.0.0:$PORT start:app
+CMD gunicorn --worker-class eventlet -w 1 start:app

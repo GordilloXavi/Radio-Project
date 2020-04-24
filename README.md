@@ -12,9 +12,13 @@ PYTHONPATH=/app
 PYTHONUNBUFFERED=1
 
 FLASK_APP=start.py
-FLASK_ENV=development
 FLASK_DEBUG=1
+HOST=0.0.0.0
+PORT=5000
+SECRET_KEY=replaceme # To encrypt socketio messages
 
+
+# Postgres:
 POSTGRES_DB=hotbox-db
 POSTGRES_USER=hotbox-user
 POSTGRES_PASSWORD=hotbox-password

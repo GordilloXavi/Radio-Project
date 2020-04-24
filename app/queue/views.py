@@ -1,14 +1,17 @@
 from flask import Blueprint, request, make_response
+from app.sockets import socketio
 from app.queue.models import Queue
 from app.db import db
 from datetime import datetime
 from app.song.models import Song
 from app.user.models import User
 from typing import List
+import json
 
 blueprint = Blueprint('queue', __name__)
 
 
+#FIXME: implement with sockets!!
 @blueprint.route('/queue/<uuid:song_id>', methods=['POST'])
 def add_song(song_id: str):    
     song = Song.query.filter_by(id=song_id).first()
@@ -22,17 +25,54 @@ def add_song(song_id: str):
 
     add_song_to_queue(db.session, song, user)
 
+    queue = get_current_queue(5)
+    queue_data = [q.to_dict() for q in queue]
+    socketio.emit(json.dumps(queue_data))
+
     return make_response('song added', 200)
+
+@blueprint.route('/queue/<max_entries>', methods=['get'])
+def get_queue_element(max_entries: int):
+    try:
+        entries = get_current_queue(max_entries=max_entries)
+        queue_data = [q.to_dict() for q in entries]
+        return make_response(queue_data, 200)
+    except:
+        #TODO: log error
+        return make_response('summ happened', 500)
     
 
 def add_song_to_queue(session, song: Song, by_user: User = None):
     """
     Adds song to queue
     """
-    entry = Queue(
-        song=song,
-        user=by_user
-    )
-    session.add(entry)
-    session.commit()
+    try:
+        entry = Queue(
+            song=song,
+            user=by_user
+        )
+        session.add(entry)
+        session.commit()
+    except: #TODO: log error
+        session.rollback()
     
+def get_current_queue(max_entries: int  = 5) -> List[Queue]:
+    entries = []
+
+    user_request_entries = Queue.query.filter_by(
+        played=False,
+        user_request=True
+        ).limit(max_entries).all()
+
+    diff = max_entries - len(user_request_entries)
+
+    if diff > 0:
+        other_entries = Queue.query.filter_by(
+            played=False,
+            user_request=False
+        ).limit(diff).all()
+
+        entries = user_request_entries + other_entries
+
+    return entries
+        

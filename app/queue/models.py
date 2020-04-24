@@ -15,10 +15,16 @@ class Queue(db.Model):
     created_at = Column(DateTime, default=datetime.now(), nullable=False)
     played = Column(Boolean, default=False) #FIXME: status instead of bool
     user_request = Column(Boolean, default=False)
+    #requested_at = Column(DateTime) #TODO:
     played_at = Column(DateTime, default=datetime.now())
 
     song = relationship("Song", back_populates='queue_entries')
     user = relationship("User", back_populates='song_requests')
 
     def to_dict(self) -> dict:
-        return {} #TODO
+        return {
+            'id': self.id,
+            'user_request': self.user_request,
+            'song': self.song.to_dict(),
+            'user': self.user.to_dict()
+        }

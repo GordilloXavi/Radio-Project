@@ -26,5 +26,5 @@ class Queue(db.Model):
             'id': str(self.id),
             'user_request': self.user_request,
             'song': self.song.to_dict(),
-            'user': self.user.to_dict()
+            'added_by': self.user.to_dict()
         }

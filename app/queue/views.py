@@ -1,5 +1,6 @@
 from flask import Blueprint, request, make_response
-from app.sockets import socketio
+#from app.sockets import socketio
+from flask_socketio import send
 from app.queue.models import Queue
 from app.db import db
 from datetime import datetime
@@ -29,8 +30,11 @@ def add_song(song_id: str):
 
     queue = get_current_queue(5)
     queue_data = [q.to_dict() for q in queue]
-    print(queue_data)
-    socketio.emit(json.dumps(queue_data))
+    data = json.dumps(queue_data)
+    print(f'data ({type(data)}):')
+    print(data)
+    #socketio.emit('queue_update', json.dumps(queue_data))
+    send(json.dumps(queue_data), namespace='/queue', json=True, broadcast=True)
 
     return make_response('song added', 200)
 

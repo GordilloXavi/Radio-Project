@@ -1,4 +1,4 @@
-from flask import Blueprint, make_response
+from flask import Blueprint, make_response, request
 from app.db import db
 from typing import List
 from app.song.models import Song
@@ -10,6 +10,8 @@ blueprint = Blueprint('song', __name__)
 
 @blueprint.route('/song/<query>', methods=['POST'])
 def create(query: str):
+    print('request headers:')
+    print(request.headers)
     try:
         session = db.session
         song = create_song_from_query(session, query)

@@ -64,7 +64,7 @@ def create_app(config_object: Config = ProdConfig):
 
     init_database(app)
     
-    socketio.init_app(app)
+    socketio.init_app(app) #FIXME: remove for prod!!!
 
     return app
 

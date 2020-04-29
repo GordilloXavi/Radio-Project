@@ -12,6 +12,8 @@ Delete existing rule:
 `uf delete {allow|deny} <app_name>`
 
 # Nginx
+Path to Nginx config files:
+`etc/nginx/`
 Check server status:
 `systemctl status nginx`
 Reload Nginx (to apply config changes):

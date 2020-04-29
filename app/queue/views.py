@@ -1,6 +1,6 @@
 from flask import Blueprint, request, make_response
 #from app.sockets import socketio
-from flask_socketio import send
+from flask_socketio import emit
 from app.queue.models import Queue
 from app.db import db
 from datetime import datetime
@@ -29,13 +29,17 @@ def add_song(song_id: str):
     add_song_to_queue(db.session, song, user)
 
     queue = get_current_queue(5)
-    queue_data = [q.to_dict() for q in queue]
+    queue_data = {'entries': [q.to_dict() for q in queue]}
     data = json.dumps(queue_data)
-    print(f'data ({type(data)}):')
-    print(data)
-    #socketio.emit('queue_update', json.dumps(queue_data))
-    send(json.dumps(queue_data), namespace='/queue', json=True, broadcast=True)
 
+    emit(
+        'queue_update', 
+        data,
+        json=True,
+        namespace='/queue',
+        broadcast=True
+    )
+ 
     return make_response('song added', 200)
 
 @blueprint.route('/queue/<int:max_entries>', methods=['get'])
@@ -46,7 +50,9 @@ def get_queue_element(max_entries: int):
     try:
         entries = get_current_queue(max_entries=max_entries)
         queue_data = {'entries': [q.to_dict() for q in entries]}
+        
         return make_response(queue_data, 200)
+    
     except:
         #TODO: log error
         traceback.print_exc()
@@ -56,6 +62,9 @@ def get_queue_element(max_entries: int):
 def add_song_to_queue(session, song: Song, by_user: User = None):
     """
     Adds song to queue
+    TODO: aviod adding songs with no youtube link or no title
+    TODO: aviod adding a song that was played recently
+    TODO: aviod adding songs with a duratrion > 15 min
     """
     try:
         entry = Queue(

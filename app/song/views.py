@@ -1,5 +1,6 @@
 from flask import Blueprint, make_response, request
 from app.db import db
+from  flask_cors import cross_origin
 from typing import List
 from app.song.models import Song
 from sqlalchemy import func
@@ -8,10 +9,9 @@ import traceback
 
 blueprint = Blueprint('song', __name__)
 
+@cross_origin(origin='localhost',headers=['Content- Type']) #FIXME: remove for prod
 @blueprint.route('/song/<query>', methods=['POST'])
 def create(query: str):
-    print('request headers:')
-    print(request.headers)
     try:
         session = db.session
         song = create_song_from_query(session, query)

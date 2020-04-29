@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 
 from flask.helpers import get_debug_flag
 
@@ -64,7 +65,11 @@ def create_app(config_object: Config = ProdConfig):
 
     init_database(app)
     
-    socketio.init_app(app) #FIXME: remove for prod!!!
+    socketio.init_app(app, cors_allowed_origins='*') #FIXME: remove for prod!!!
+
+    CORS(app) # Allow Cross-Access Origin FIXME: disable for prod
+    app.config['CORS_HEADERS'] = 'Content-Type'
+    app.config['CORS_SUPPORTS_CREDENTIALS'] = True
 
     return app
 

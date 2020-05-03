@@ -24,15 +24,18 @@ class Song(db.Model):
     __tablename__ = 'song'
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
     title = Column(String(255))
+    user_id = Column(UUID(as_uuid=True), ForeignKey('user.id'), nullable=True)
     artist = Column(String(255)) #TODO: support multiple artists or concatenate them
     picture_url = Column(String(1024))
     yt_title = Column(String(255))
-    yt_url = Column(String(1024), index=True)
+    yt_url = Column(String(1024), index=True) #FIXME: youtube_id 
     yt_thumbnail_url = Column(String(1024))
     yt_meta = Column(JSON)
     spotify_meta = Column(JSON)
     duration = Column(Integer)
     created_at = Column(DateTime, default=datetime.now(), nullable=False)
+    
+    added_by = relationship("User", back_populates='added_songs')
 
     queue_entries = relationship('Queue', back_populates='song')
 

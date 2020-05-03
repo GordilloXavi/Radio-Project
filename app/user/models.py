@@ -16,6 +16,8 @@ class User(db.Model):
 
     song_requests = relationship('Queue', back_populates='user')
 
+    added_songs = relationship('Song', back_populates='added_by')
+
     def to_dict(self) -> dict:
         return {
             'id': str(self.id),

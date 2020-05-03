@@ -1,12 +1,14 @@
 from flask import Blueprint, request, make_response
 #from app.sockets import socketio
 from flask_socketio import emit
-from app.queue.models import Queue
+from app.queue.models import Queue, QueueStatus
 from app.db import db
 from datetime import datetime
+from sqlalchemy import or_
 from app.song.models import Song
 from app.user.models import User
 from typing import List
+import logging
 import json
 import traceback
 
@@ -15,7 +17,9 @@ blueprint = Blueprint('queue', __name__)
 
 #FIXME: implement with sockets!!
 @blueprint.route('/queue/<uuid:song_id>', methods=['POST'])
-def add_song(song_id: str):    
+def add_song(song_id: str):  
+    entries = 50
+    # TODO: add header for max_queue_entris in socket emit  
     song = Song.query.filter_by(id=song_id).first()
     if song is None:
         return make_response('song not found', 404)
@@ -28,7 +32,7 @@ def add_song(song_id: str):
 
     add_song_to_queue(db.session, song, user)
 
-    queue = get_current_queue(5)
+    queue = get_current_queue(entries)
     queue_data = {'entries': [q.to_dict() for q in queue]}
     data = json.dumps(queue_data)
 
@@ -66,33 +70,47 @@ def add_song_to_queue(session, song: Song, by_user: User = None):
     TODO: aviod adding a song that was played recently
     TODO: aviod adding songs with a duratrion > 15 min
     """
+    user_request = True if by_user is not None else False
     try:
         entry = Queue(
             song=song,
-            user=by_user
+            user=by_user,
+            user_request=user_request,
+            requested_at=datetime.now()
         )
         session.add(entry)
         session.commit()
     except: #TODO: log error
+        traceback.print_exc()
         session.rollback()
     
 def get_current_queue(max_entries: int  = 5) -> List[Queue]:
+
     entries = []
 
+    playing_song = Queue.query.filter_by(status=QueueStatus.PLAYING).all()
+    if len(playing_song) > 1:
+        # TODO: raise exception
+        logging.error('More than one song playing at the same time')
+        return None
+
+    max_entries -= len(playing_song)
+    entries += playing_song
+
     user_request_entries = Queue.query.filter_by(
-        played=False,
+        status=QueueStatus.UPCOMING,
         user_request=True
-        ).limit(max_entries).all()
+    ).limit(max_entries).all()
 
-    diff = max_entries - len(user_request_entries)
+    max_entries -= len(user_request_entries)
+    entries += user_request_entries
 
-    if diff > 0:
-        other_entries = Queue.query.filter_by(
-            played=False,
-            user_request=False
-        ).limit(diff).all()
-
-        entries = user_request_entries + other_entries
+    other_entries = Queue.query.filter_by(
+        status=QueueStatus.UPCOMING,
+        user_request=False
+    ).limit(max_entries).all()
+        
+    entries += other_entries
 
     return entries
         

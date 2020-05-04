@@ -14,6 +14,27 @@ import traceback
 
 blueprint = Blueprint('queue', __name__)
 
+#FIXME: this was done because i cant setup a redis queue with flak_socketio
+#TODO: setup the queue and emit the mesages in separate processes directly
+@blueprint.route('/queue/socket/<int:entries>', methods=['GET'])
+def emit_queue(entries: int = 50):
+    try:
+        queue = get_current_queue(entries)
+        queue_data = {'entries': [q.to_dict() for q in queue]}
+        data = json.dumps(queue_data)
+
+        emit(
+            'queue_update', 
+            data,
+            json=True,
+            namespace='/queue',
+            broadcast=True
+        )
+
+        return make_response('', 200)
+    except:
+        return make_response('', 500)
+
 
 #FIXME: implement with sockets!!
 @blueprint.route('/queue/<uuid:song_id>', methods=['POST'])

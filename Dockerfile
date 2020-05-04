@@ -14,6 +14,7 @@ COPY /app /app/app
 COPY pyproject.toml /app
 COPY start.py /app
 
+RUN pip install --upgrade pip
 RUN pip install poetry
 RUN poetry config virtualenvs.create false
 RUN poetry install

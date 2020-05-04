@@ -33,6 +33,7 @@ def exec():
         if current_entry is None:
             logging.warning('There are no songs in the queue')
             play_next_song(db.session)
+            notify_queue_change()
             sleep(1)
             continue
 
@@ -78,13 +79,14 @@ def add_random_song_to_queue(session) -> None:
     ).all()
 
     songs_count = len(songs)
-    print(f'Numer of songs: {len(songs)}')
+    print(f'Numer of songs: {songs_count}')
     if songs_count == 0:
         logging.info('There are no songs')
         return
     
-    rand = randint(0, songs_count)
-    random_song = songs[rand]
+    r = randint(0, songs_count-1)
+    print(f'random_number: {r}')
+    random_song = songs[r]
 
     add_song_to_queue(session, random_song)
 
@@ -120,17 +122,8 @@ def play_next_song(session) -> None:
     
 
 def notify_queue_change() -> None:
-    queue = get_current_queue(max_entries=50)
-    queue_data = {'entries': [q.to_dict() for q in queue]}
-    data = json.dumps(queue_data)
-
-    emit(
-        'queue_update', 
-        data,
-        json=True,
-        namespace='/queue',
-        broadcast=True
-    )
+    import requests
+    requests.get('http://localhost:5000/queue/socket/50') #FIXME: emit the mesage instead of calling an endpoint
 
 def update_entry_time(session, entry: Queue) -> None:
     if entry.current_second > entry.song.duration:

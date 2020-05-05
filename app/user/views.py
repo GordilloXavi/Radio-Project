@@ -37,7 +37,7 @@ def create_new_user(session, user_name: str) -> User:
     Creates a new user with the specified user name.
     If the user already existed, returns an error.
     """
-    user = User.query.filter_by(name=user_name.lower()).first()
+    user = User.query.filter_by(name=user_name).first()
     if user is not None:
         return None
 

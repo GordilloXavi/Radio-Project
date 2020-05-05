@@ -68,7 +68,7 @@ def add_song(song_id: str):
     return make_response('song added', 200)
 
 @blueprint.route('/queue/<int:max_entries>', methods=['get'])
-def get_queue_element(max_entries: int):
+def get_queue_elements(max_entries: int):
     if max_entries > 50 or max_entries < 0:
         return make_response('max entries: 50')
         

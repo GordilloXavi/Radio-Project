@@ -27,7 +27,7 @@ def get_youtube_meta(query: str) -> dict:
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         try:
             data = ydl.extract_info(
-                f'ytsearch:{query} audio',
+                f'ytsearch:{query} audio', #FIXME: remove audio from here and put it in upper layers
                 download=False
             )['entries'][0]
 

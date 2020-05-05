@@ -46,11 +46,10 @@ def add_song(song_id: str):
         return make_response('song not found', 404)
 
     user_name = request.headers.get('user_name')
-    print(f'user_name: {user_name}')
     user = User.query.filter_by(name=user_name).first()
 
-    if user_name is None or user is None:
-        return make_response('user not found', 404)
+    #if user_name is None or user is None:
+        #return make_response('user not found', 404)
 
     add_song_to_queue(db.session, song, user)
 

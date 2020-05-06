@@ -24,7 +24,7 @@ com:
 	if [ -z "$(com)" ]; then \
 		docker exec -t hotbox-app flask com; \
 	else \
-		docker exec -t hotbox-app flask com "$(com); \
+		docker exec -t hotbox-app flask com "$(com)"; \
 	fi
 
 install:

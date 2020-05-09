@@ -36,7 +36,6 @@ def emit_queue(entries: int = 50):
         return make_response('', 500)
 
 
-#FIXME: implement with sockets!!
 @blueprint.route('/queue/<uuid:song_id>', methods=['POST'])
 def add_song(song_id: str):  
     entries = 50
@@ -48,8 +47,8 @@ def add_song(song_id: str):
     user_name = request.headers.get('user_name')
     user = User.query.filter_by(name=user_name).first()
 
-    #if user_name is None or user is None:
-        #return make_response('user not found', 404)
+    if user_name is None or user is None:
+        return make_response('user not found', 404)
 
     add_song_to_queue(db.session, song, user)
 

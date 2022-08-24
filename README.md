@@ -2,6 +2,11 @@
 
 Welcome to the hotbox project!
 
+This is a web application that allows the user to add songs to a playing queue in real time. 
+All users can query the platform to add new songs, and the songs will be added to the queue in real time.
+This is a pet project that I created to develop my skills with python/flask/socketio/VUEjs.
+The app is currently not deployed on a server due to maintenance costs. 
+
 ## Installation:
 
 Clone the repository
@@ -42,7 +47,7 @@ $ {'status': 'Running'}
 ```
 
 
-##  Managing ependencies:
+##  Managing dependencies:
 
 ### Upgrading dependencies:
 Open a shell for the project's container:
